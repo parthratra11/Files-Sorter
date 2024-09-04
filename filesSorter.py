@@ -30,9 +30,21 @@ listDir = os.listdir(myPath)
 for dirName in filters:
     for flag in range(len(filters[dirName])):
         extension = '*.' + filters[dirName][flag]
+        
+        listDir = os.listdir(myPath) # REGENERATING AFTER EACH LOOP TO MAKE SURE THE LIST OF REMAINING FILES/FOLDERS IS ACCURATE
+
         for file in fnmatch.filter(listDir, extension):
             # RENAMING THE FILES IN ORDER TO MOVE THEM TO THEIR RESPECTIVE SUB-FOLDERS
-            os.rename(os.path.join(myPath, file), os.path.join(myPath, dirName + '\\' + file))
+            # os.rename(os.path.join(myPath, file), os.path.join(myPath, dirName + '\\' + file))
+
+            src = os.path.join(myPath, file)
+            dst = os.path.join(myPath, dirName, file)
+
+            # CHECKS IF THE FILE ALREADY EXISTS OR NOT
+            if os.path.exists(dst):
+                print(f'File "{file}" already exists in "{dirName}". Skipping...')
+            else:
+                os.rename(src, dst)
 
 # MOVING THE REMAINING SUB-DIRECTORIES INTO THE 'Folders + Extras' SUB-FOLDER
 for extra in listDir:
