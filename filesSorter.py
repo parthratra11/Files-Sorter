@@ -1,7 +1,7 @@
 import os, fnmatch
 
 # SPECIFY THE PATH OF THE DIRECTORY TO BE SORTED
-myPath = r"C:\\Users\\parth\\Downloads\\"
+myPath = r"D:\\downloads\\"
 
 # SPECIFY THE DIVISONS AND EXTENSIONS OF THE FILES TO BE SORTED
 filters = {
